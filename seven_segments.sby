@@ -1,0 +1,17 @@
+[tasks]
+cover
+
+[options]
+cover: mode cover
+cover: depth 10
+
+[engines]
+smtbmc
+
+[script]
+read_verilog -formal seven_segments.v
+prep -top seven_segments
+
+[files]
+seven_segments.v
+

@@ -1,0 +1,18 @@
+[tasks]
+cover
+
+[options]
+cover: mode cover
+cover: depth 120
+
+[engines]
+smtbmc
+
+[script]
+read_verilog -formal counter.v seven_segments.v
+prep -top counter_7seg
+
+[files]
+counter.v
+seven_segments.v
+
