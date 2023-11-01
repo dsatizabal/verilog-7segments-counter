@@ -14,19 +14,19 @@ synth_counter:
 test_seven_segments:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -o sim_build/sim.vvp -s seven_segments -g2012 seven_segments.v
+	iverilog -o sim_build/sim.vvp -s seven_segments -s dump -g2012 dump_seven_segments.v seven_segments.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_seven_segments vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 
 test_counter:
 	rm -rf sim_build/
 	mkdir sim_build/
-	iverilog -o sim_build/sim.vvp -s counter_7seg -g2012 counter.v seven_segments.v
+	iverilog -o sim_build/sim.vvp -s counter_7seg -s dump -g2012 dump_counter.v counter.v seven_segments.v
 	PYTHONOPTIMIZE=${NOASSERT} MODULE=test.test_counter vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp
 	! grep failure results.xml
 
 gtkwave_seven_segments:
-	gtkwave seven_segments_counter.vcd
+	gtkwave seven_segments_module.vcd
 
 gtkwave_counter:
 	gtkwave seven_segments_counter.vcd

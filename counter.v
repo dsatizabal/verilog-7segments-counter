@@ -11,12 +11,6 @@ module counter_7seg(
 	reg [19:0] counter;
 	reg [3:0] digit;
 
-	initial begin
-		$dumpfile ("seven_segments_counter.vcd");
-		$dumpvars (0, counter_7seg);
-		#1;
-	end
-
 	`ifdef COCOTB_SIM
 		localparam MAX_COUNT = 8'h09;
 	`else

@@ -18,14 +18,6 @@ module seven_segments(
 	output reg [6:0] display
 );
 
-	`ifdef COCOTB_SIM
-		initial begin
-			$dumpfile ("seven_segments_module.vcd");
-			$dumpvars (0, seven_segments);
-			#1;
-		end
-	`endif
-
 	always @(*) begin
 		case (binary)
 			//                    7654321
@@ -55,8 +47,7 @@ module seven_segments(
 			_output7_: cover(display == 7'b0000111);
 			_output8_: cover(display == 7'b0111111);
 			_output9_: cover(display == 7'b1101111);
-			// _outputE_: cover(display == 7'b1111001); // Only
-			// pases when seven_segments is being tested alone
+			// _outputE_: cover(display == 7'b1111001); // Only pases when seven_segments is being tested alone
 		end;
 	`endif
 
